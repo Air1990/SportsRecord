@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#ffffff"
+    android:orientation="vertical">
+
+    <TextView
+        android:id="@+id/msg"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/lock"
+        android:layout_centerHorizontal="true"
+        android:layout_gravity="center"
+        android:text="请设置手势"
+        android:textSize="18sp" />
+
+
+    <com.examp.airhome.gesturelock.GestureLockView
+        android:id="@+id/lock"
+        android:layout_width="match_parent"
+        android:layout_height="1080px"
+        android:layout_centerInParent="true" />
+</RelativeLayout>
