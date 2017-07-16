@@ -1,11 +1,14 @@
 package com.airhome.sportsrecord;
 
+import android.content.Intent;
 import android.net.Uri;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
@@ -25,6 +28,7 @@ public class HistoryActivity extends AppCompatActivity {
         setContentView(R.layout.activity_history);
         setTitle("我的记录");
         mList = (RecyclerView) findViewById(R.id.list);
+        setData();
         mList.setLayoutManager(new LinearLayoutManager(this));
         mList.setAdapter(mAdapter);
     }
@@ -67,5 +71,32 @@ public class HistoryActivity extends AppCompatActivity {
         String time;
         String content;
         String imagePath;
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        if (requestCode == 100 && resultCode == RESULT_OK) {
+            setData();
+            mAdapter.notifyDataSetChanged();
+        }
+    }
+
+    private void setData() {
+
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        menu.add(Menu.NONE, 100, 0, "添加");
+        return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        if (item.getItemId() == 100) {
+            Intent intent = new Intent(this, AddContentActivity.class);
+            startActivityForResult(intent, 100);
+        }
+        return true;
     }
 }
